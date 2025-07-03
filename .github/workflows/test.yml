@@ -8,6 +8,13 @@ on:
       - "src/**"
       - "test/**"
       - ".github/workflows/test.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "src/**"
+      - "test/**"
+      - ".github/workflows/test.yml"
 
 jobs:
   test:
