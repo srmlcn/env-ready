@@ -26,4 +26,15 @@ describe("loadEnv", () => {
 
     expect(() => loadEnv(mockAdapter)).toThrow(InvalidEnvironmentError)
   })
+
+  it("attaches the cause to the error", () => {
+    delete process.env.FOO
+
+    try {
+      loadEnv(mockAdapter)
+    } catch (err) {
+      expect(err).toBeInstanceOf(InvalidEnvironmentError)
+      expect((err as InvalidEnvironmentError).cause).toBeDefined()
+    }
+  })
 })
