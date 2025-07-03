@@ -1,7 +1,7 @@
 {
   "name": "env-ready",
   "version": "0.0.0",
-  "description": "`env-ready` is a schema-driven environment variable loader for Node.js projects. It provides a minimal interface for validating and loading environment variables while remaining validator agnostic. Designed to support multiple schema systems through adapters, `env-ready` helps enforce configuration correctness early in the application lifecycle.",
+  "description": "A schema-driven environment variable loader for Node.js projects",
   "keywords": [
     "env",
     "environment",
@@ -34,7 +34,7 @@
   "main": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
