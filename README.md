@@ -18,6 +18,12 @@
 - Enable **schema flexibility** through pluggable adapters
 - Keep the runtime overhead **minimal** and the API **ergonomic**
 
+## Validator Compatibility
+
+- [Zod](https://github.com/colinhacks/zod)
+- Custom schemas
+  - Must implement: `safeParse(env: unknown): { success: boolean, data?: any, error?: any }`
+
 ## Contribute
 
 If you find this project useful, consider:
