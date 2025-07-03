@@ -1,5 +1,6 @@
 import { loadEnv } from "@/core/loader"
 import { mockAdapter } from "./fixtures/mock-schema"
+import { InvalidEnvironmentError } from "@/errors/invalid-environment-error"
 
 describe("loadEnv", () => {
   const originalEnv = process.env
@@ -20,16 +21,9 @@ describe("loadEnv", () => {
     expect(config.FOO).toBe("bar")
   })
 
-  it("exits on invalid env vars", () => {
-    const spy = jest.spyOn(process, "exit").mockImplementation(() => {
-      throw new Error("process.exit")
-    })
+  it("throws EnvValidationError when invalid", () => {
+    delete process.env.FOO
 
-    const errorSpy = jest.spyOn(console, "error").mockImplementation(() => {})
-
-    expect(() => loadEnv(mockAdapter)).toThrow("process.exit")
-
-    spy.mockRestore()
-    errorSpy.mockRestore()
+    expect(() => loadEnv(mockAdapter)).toThrow(InvalidEnvironmentError)
   })
 })
