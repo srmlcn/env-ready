@@ -33,6 +33,10 @@
   "type": "module",
   "main": "src/index.ts",
   "scripts": {
+    "build": "tsc",
     "test": "jest"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
   }
 }
