@@ -1,6 +1,6 @@
 # env-ready
 
-[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
+[![npm](https://img.shields.io/npm/v/env-ready?color=blue)](https://www.npmjs.com/package/env-ready) [![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 
 **env-ready** provides a centralized, fail-fast mechanism for validating environment variables at startup—designed to reduce misconfiguration, improve safety, and support your preferred schema validation library through adapter-based extensibility.
 
