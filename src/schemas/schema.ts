@@ -1,3 +1,3 @@
-export interface SchemaAdapter<T> {
+export interface Schema<T> {
   parse?: (env: NodeJS.ProcessEnv) => T
 }
