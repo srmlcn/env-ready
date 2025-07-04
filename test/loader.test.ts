@@ -1,6 +1,7 @@
 import { loadEnv } from "@/core/loader"
 import { mockSchema } from "./fixtures/mock-schema"
 import { InvalidEnvironmentError } from "@/errors/invalid-environment-error"
+import { InvalidSchemaError } from "@/errors/invalid-schema-error"
 
 describe("loadEnv", () => {
   const originalEnv = process.env
@@ -36,5 +37,11 @@ describe("loadEnv", () => {
       expect(err).toBeInstanceOf(InvalidEnvironmentError)
       expect((err as InvalidEnvironmentError).cause).toBeDefined()
     }
+  })
+
+  it("throws InvalidSchemaError when schema is invalid", () => {
+    const invalidSchema = {} as any
+
+    expect(() => loadEnv(invalidSchema)).toThrow(InvalidSchemaError)
   })
 })
