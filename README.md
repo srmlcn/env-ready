@@ -57,7 +57,7 @@ console.log(env.BAR) // Optional variable, may be undefined
 
 Joi schemas are fully supported, but type inference is not available by default. To coerce Joi schemas into TypeScript types, you can use the `joi-to-typescript` package or manually define types that match your Joi schema.
 
-#### Javascript Example
+#### JavaScript Example
 
 ```javascript
 const { loadEnv } = require("env-ready")
