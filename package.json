@@ -31,7 +31,15 @@
   "license": "MIT",
   "author": "Spencer Cain",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.cts",
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "dist/**/*.cjs",
+    "dist/**/*.d.cts"
+  ],
   "scripts": {
     "build": "tsc",
     "test": "jest --coverage"
