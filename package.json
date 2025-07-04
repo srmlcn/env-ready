@@ -42,7 +42,8 @@
   ],
   "scripts": {
     "build": "tsup",
-    "test": "jest --coverage"
+    "test": "jest --coverage",
+    "prepare": "npm run build"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
