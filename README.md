@@ -81,6 +81,7 @@ export const env = loadEnv(mySchema)
 ## Validator Compatibility
 
 - [Zod](https://github.com/colinhacks/zod)
+- [Joi](https://github.com/hapijs/joi)
 - Custom schemas
   - Must implement: `parse<T>(env: unknown): T`
 
