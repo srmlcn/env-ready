@@ -1,5 +1,5 @@
 import { loadEnv } from "@/core/loader"
-import { mockAdapter } from "./fixtures/mock-schema"
+import { mockSchema } from "./fixtures/mock-schema"
 import { InvalidEnvironmentError } from "@/errors/invalid-environment-error"
 
 describe("loadEnv", () => {
@@ -17,21 +17,21 @@ describe("loadEnv", () => {
     type MockConfig = { FOO: string }
 
     process.env.FOO = "bar"
-    const config = loadEnv<MockConfig>(mockAdapter)
+    const config = loadEnv<MockConfig>(mockSchema)
     expect(config.FOO).toBe("bar")
   })
 
   it("throws EnvValidationError when invalid", () => {
     delete process.env.FOO
 
-    expect(() => loadEnv(mockAdapter)).toThrow(InvalidEnvironmentError)
+    expect(() => loadEnv(mockSchema)).toThrow(InvalidEnvironmentError)
   })
 
   it("attaches the cause to the error", () => {
     delete process.env.FOO
 
     try {
-      loadEnv(mockAdapter)
+      loadEnv(mockSchema)
     } catch (err) {
       expect(err).toBeInstanceOf(InvalidEnvironmentError)
       expect((err as InvalidEnvironmentError).cause).toBeDefined()
