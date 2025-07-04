@@ -18,6 +18,12 @@
 - Enable **schema flexibility** through validator inference
 - Keep the runtime overhead **minimal** and the API **ergonomic**
 
+## Installation
+
+```bash
+npm install env-ready
+```
+
 ## Validator Compatibility
 
 - [Zod](https://github.com/colinhacks/zod)
