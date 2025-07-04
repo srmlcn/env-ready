@@ -53,6 +53,52 @@ console.log(env.FOO) // Access validated environment variable
 console.log(env.BAR) // Optional variable, may be undefined
 ```
 
+### Joi Schemas
+
+Joi schemas are fully supported, but type inference is not available by default. To coerce Joi schemas into TypeScript types, you can use the `joi-to-typescript` package or manually define types that match your Joi schema.
+
+#### JavaScript Example
+
+```javascript
+const { loadEnv } = require("env-ready")
+const Joi = require("joi")
+
+// Define your Joi schema
+const schema = Joi.object({
+  FOO: Joi.string().required(),
+  BAR: Joi.number(), // Optional by default
+})
+
+// Load and validate environment variables
+const env = loadEnv(schema) // `env` will be typed as `any`
+console.log(env.FOO) // Access validated environment variable
+console.log(env.BAR) // Optional variable, may be undefined
+```
+
+#### TypeScript Example
+
+```typescript
+import { loadEnv } from "env-ready"
+import Joi from "joi"
+
+// Define your Joi schema
+const schema = Joi.object({
+  FOO: Joi.string().required(),
+  BAR: Joi.number(), // Optional by default
+})
+
+// Define TypeScript types based on your Joi schema
+type EnvConfig = {
+  FOO: string
+  BAR?: number // Optional variable
+}
+
+// Load and validate environment variables
+const env = loadEnv<EnvConfig>(schema) // `env` will be typed as `EnvConfig`
+console.log(env.FOO) // Access validated environment variable
+console.log(env.BAR) // Optional variable, may be undefined
+```
+
 ### Custom Schemas
 
 You can also create custom schemas that implement the `parse` method:
@@ -81,6 +127,7 @@ export const env = loadEnv(mySchema)
 ## Validator Compatibility
 
 - [Zod](https://github.com/colinhacks/zod)
+- [Joi](https://github.com/hapijs/joi)
 - Custom schemas
   - Must implement: `parse<T>(env: unknown): T`
 
