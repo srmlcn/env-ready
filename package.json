@@ -41,7 +41,7 @@
     "dist/**/*.d.cts"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsup",
     "test": "jest --coverage"
   },
   "devDependencies": {
