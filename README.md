@@ -22,7 +22,7 @@
 
 - [Zod](https://github.com/colinhacks/zod)
 - Custom schemas
-  - Must implement: `safeParse(env: unknown): { success: boolean, data?: any, error?: any }`
+  - Must implement: `parse<T>(env: unknown): T`
 
 ## Contribute
 
