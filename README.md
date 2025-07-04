@@ -24,6 +24,35 @@
 npm install env-ready
 ```
 
+## Usage
+
+### Basic Example
+
+Create a schema using your preferred validation library, for instance, in `src/env.ts`:
+
+```typescript
+import { loadEnv } from "env-ready"
+import { z } from "zod"
+
+// Define your schema using Zod
+const schema = z.object({
+  FOO: z.string().min(1, "FOO is required"),
+  BAR: z.number().optional(),
+})
+
+// Load and validate environment variables
+export const env = loadEnv(schema)
+```
+
+Then, in your application code:
+
+```typescript
+import { env } from "./env"
+
+console.log(env.FOO) // Access validated environment variable
+console.log(env.BAR) // Optional variable, may be undefined
+```
+
 ## Validator Compatibility
 
 - [Zod](https://github.com/colinhacks/zod)
