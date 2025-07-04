@@ -1,16 +1,21 @@
 import { InvalidEnvironmentError } from "@/errors/invalid-environment-error"
 import { InvalidSchemaError } from "@/errors/invalid-schema-error"
 import { ensureError } from "@/errors/utils"
-import { possibleSchemaFunctions, type Schema } from "@/schemas/schema"
+import {
+  schemaParsers,
+  type Schema,
+  type SchemaParser,
+  type SchemaParserName,
+} from "@/schemas/schema"
 
 export function loadEnv<T>(schema: Schema<T>): T {
   let parsed: T
 
-  for (const funcName of possibleSchemaFunctions) {
-    if (schema[funcName] === undefined) continue
+  for (const [funcName, func] of Object.entries(schemaParsers)) {
+    if (typeof schema[funcName as SchemaParserName] !== "function") continue
 
     try {
-      parsed = schema[funcName](process.env)
+      parsed = (func as SchemaParser)(process.env, schema)
     } catch (_error) {
       const error = ensureError(_error)
       throw new InvalidEnvironmentError(
@@ -23,8 +28,8 @@ export function loadEnv<T>(schema: Schema<T>): T {
   }
 
   throw new InvalidSchemaError(
-    `Schema must implement one of the following methods: ${possibleSchemaFunctions.join(
-      ", "
-    )}`
+    `Schema must implement one of the following methods: ${Object.keys(
+      schemaParsers
+    ).join(", ")}`
   )
 }
