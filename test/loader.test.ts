@@ -22,7 +22,7 @@ describe("loadEnv", () => {
     expect(config.FOO).toBe("bar")
   })
 
-  it("throws EnvValidationError when invalid", () => {
+  it("throws InvalidEnvironmentError when invalid", () => {
     delete process.env.FOO
 
     expect(() => loadEnv(mockSchema)).toThrow(InvalidEnvironmentError)
