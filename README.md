@@ -53,6 +53,31 @@ console.log(env.FOO) // Access validated environment variable
 console.log(env.BAR) // Optional variable, may be undefined
 ```
 
+### Custom Schemas
+
+You can also create custom schemas that implement the `parse` method:
+
+```typescript
+import { loadEnv } from "env-ready"
+
+// Define a custom schema class
+class CustomSchema<T> {
+  parse(env: unknown): T {
+    // Custom parsing logic here
+    return env as T
+  }
+}
+
+// Define your custom schema type
+type MyConfig = { FOO: string; BAR?: number }
+
+// Create an instance of your custom schema
+export const mySchema = new CustomSchema<MyConfig>()
+
+// Load and validate environment variables using your custom schema
+export const env = loadEnv(mySchema)
+```
+
 ## Validator Compatibility
 
 - [Zod](https://github.com/colinhacks/zod)
