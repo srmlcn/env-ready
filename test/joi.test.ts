@@ -81,6 +81,6 @@ describe("loadEnv with Joi schema", () => {
     const config = loadEnv(schema)
 
     expect(config.API_KEY).toBe("abc123")
-    expect(config.DEBUG).toBeUndefined()
+    expect(config.PORT).toBeUndefined()
   })
 })
